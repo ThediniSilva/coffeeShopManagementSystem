@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .flex-grow-1 {
+    flex: 1; /* Ensures the main content grows to fill available space */
+  }
+  
+  footer {
+    background-color: #343a40; /* Dark background */
+    color: #fff; /* White text */
+    text-align: center;
+  }
+  

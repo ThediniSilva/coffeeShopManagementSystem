@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+  <div class="col-sm-10 col-md-8 col-lg-5">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="text-center mb-4">Register</h2>
+        <form [formGroup]="registerForm">
+          <!-- Name Input -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name" required>
+          </div>
+          <!-- Contact Number Input -->
+          <div class="mb-3">
+            <label for="contact" class="form-label">Contact Number</label>
+            <input type="tel" class="form-control" formControlName="contactNumber" required pattern="[0-9]{10}">
+          </div>
+          <!-- Email Input -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" formControlName="email" class="form-control" required>
+          </div>
+          <!-- Password Input -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" formControlName="password" class="form-control" required>
+          </div>
+          <!-- Submit Button -->
+          <div>
+            <button (click)="register()" [disabled]="registerForm.invalid" class="btn btn-primary w-100">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

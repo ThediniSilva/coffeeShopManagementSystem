@@ -1,0 +1,28 @@
+/* Hero Section */
+.hero-section {
+    background: url('https://png.pngtree.com/thumb_back/fh260/background/20230706/pngtree-3d-render-of-the-interior-of-a-cozy-cafe-restaurant-image_3811953.jpg') 
+                no-repeat center center;
+    background-size: cover;
+}
+
+  .hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .hero-section .content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Featured Products */
+  .card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .card-title {
+    font-size: 1.25rem;
+  }
+  

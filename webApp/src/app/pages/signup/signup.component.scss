@@ -1,0 +1,27 @@
+/* Center the form container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa; /* Optional background color */
+    margin: 0;
+  }
+  
+  /* Style the form box */
+  .signup-container {
+    width: 100%;
+    max-width: 400px; /* Limit the form width */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff; /* White background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Align form fields vertically */
+  .full-width {
+    width: 100%;
+    margin-bottom: 15px; /* Add spacing between input fields */
+  }
+  
