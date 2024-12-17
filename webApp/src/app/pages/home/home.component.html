@@ -1,43 +1,66 @@
-<div class="container mt-5">
-    <div class="jumbotron text-center bg-light py-5">
-      <h1 class="display-4">Welcome to Coffee Shop!</h1>
-      <p class="lead">Discover our wide range of products and enjoy the best coffee in town.</p>
-      <hr class="my-4">
-      <p>Click below to explore our menu and shop.</p>
-      <a class="btn btn-primary btn-lg" href="/menu" role="button">Explore Menu</a>
+<!-- Container -->
+<div class="container mx-auto mt-12 px-4">
+  <!-- Jumbotron Section -->
+  <div class="text-center bg-gray-100 py-12 rounded-lg shadow-md">
+    <h1 class="text-4xl font-bold mb-4 text-gray-800">Welcome to Coffee Shop!</h1>
+    <p class="text-lg text-gray-600 mb-4">
+      Discover our wide range of products and enjoy the best coffee in town.
+    </p>
+    <hr class="my-4 border-t-2 border-gray-300 w-1/4 mx-auto">
+    <p class="text-gray-700 mb-6">Click below to explore our menu and shop.</p>
+    <a href="/menu" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
+      Explore Menu
+    </a>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
+    <!-- Card 1 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <img
+        src="https://media.istockphoto.com/id/1400194993/photo/cappuccino-art.jpg?s=612x612&w=0&k=20&c=_nYOcyQ15cYEeUYgUzkC5qG946nkCwU06NiWKt1s8SE="
+        alt="Coffee"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">Best Coffee</h2>
+        <p class="text-gray-600 mb-4">
+          Try premium brewed coffee with an exquisite taste.
+        </p>
+        <a href="/menu"  class="btn btn-outline-primary">Order Now</a>
+      </div>
     </div>
-  
-    <div class="row text-center mt-5">
-      <div class="col-md-4">
-        <div class="card">
-          <img src="https://media.istockphoto.com/id/1400194993/photo/cappuccino-art.jpg?s=612x612&w=0&k=20&c=_nYOcyQ15cYEeUYgUzkC5qG946nkCwU06NiWKt1s8SE=" class="card-img-top" alt="Coffee">
-          <div class="card-body">
-            <h5 class="card-title">Best Coffee</h5>
-            <p class="card-text">Try premium brewed coffee with an exquisite taste.</p>
-            <a href="/menu" class="btn btn-outline-primary">Order Now</a>
-          </div>
-        </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <img
+        src="https://media.istockphoto.com/id/1975776233/photo/parisian-morning-delights-street-cafe-breakfast-scene-on-a-sunny-day-in-saint-germain-des.jpg?s=612x612&w=0&k=20&c=7PZxnZP0UASJngv3IG5XFXNucia0Ho71w3lsVSx2KpE="
+        alt="Snacks"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">Delicious Snacks</h2>
+        <p class="text-gray-600 mb-4">
+          Pair your coffee with our freshly prepared snacks.
+        </p>
+        <a href="/menu" class="btn btn-outline-primary">Explore Snacks</a>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="https://media.istockphoto.com/id/1975776233/photo/parisian-morning-delights-street-cafe-breakfast-scene-on-a-sunny-day-in-saint-germain-des.jpg?s=612x612&w=0&k=20&c=7PZxnZP0UASJngv3IG5XFXNucia0Ho71w3lsVSx2KpE=" class="card-img-top" alt="Snacks">
-          <div class="card-body">
-            <h5 class="card-title">Delicious Snacks</h5>
-            <p class="card-text">Pair your coffee with our freshly prepared snacks.</p>
-            <a href="/menu" class="btn btn-outline-primary">Explore Snacks</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="https://media.istockphoto.com/id/860182950/photo/food.jpg?s=612x612&w=0&k=20&c=AKudyqBKezuhr4ySRlZaM892sq-vF1CoH_N0SMmPF5g=" class="card-img-top" alt="Desserts">
-          <div class="card-body">
-            <h5 class="card-title">Sweet Treats</h5>
-            <p class="card-text">Indulge in our desserts and make your day sweeter.</p>
-            <a href="/menu" class="btn btn-outline-primary">Try Desserts</a>
-          </div>
-        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <img
+        src="https://media.istockphoto.com/id/860182950/photo/food.jpg?s=612x612&w=0&k=20&c=AKudyqBKezuhr4ySRlZaM892sq-vF1CoH_N0SMmPF5g="
+        alt="Desserts"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">Sweet Treats</h2>
+        <p class="text-gray-600 mb-4">
+          Indulge in our desserts and make your day sweeter.
+        </p>
+        <a href="/menu" class="btn btn-outline-primary">Try Desserts</a>
       </div>
     </div>
   </div>
-  
+</div>

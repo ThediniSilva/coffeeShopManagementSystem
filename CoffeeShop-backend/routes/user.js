@@ -47,10 +47,10 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: "Incorrect Username and Password" });
         } 
         
-        // Check if user status is inactive
-        if (results[0].status === 'false') {
-            return res.status(401).json({ message: "Wait for Admin approval" });
-        } 
+        // // Check if user status is inactive
+        // if (results[0].status === 'false') {
+        //     return res.status(401).json({ message: "Wait for Admin approval" });
+        // } 
         
         // Successful login
         const response = { 
@@ -125,38 +125,42 @@ router.get('/users', authenticateToken, checkRole, async (req, res) => {
     }
 });
 
-// Get User Details (User Only)
-router.get('/user', authenticateToken, async (req, res) => {
-    const email = res.locals.email;
-    try {
-        const [results] = await pool.execute(
-            "SELECT id, name, email, contactNumber, status FROM user WHERE email = ?",
-            [email]
-        );
+// // Get User Details (User Only)
+// router.get('/user', authenticateToken, async (req, res) => {
+//     const email = res.locals.email;
+//     try {
+//         const [results] = await pool.execute(
+//             "SELECT id, name, email, contactNumber, status FROM user WHERE email = ?",
+//             [email]
+//         );
 
-        if (results.length === 0) {
-            return res.status(404).json({ message: "User not found" });
-        }
+//         if (results.length === 0) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
 
-        return res.status(200).json(results[0]);
-    } catch (err) {
-        console.error("Database error:", err);
-        return res.status(500).json({ message: "Error", error: err.message });
-    }
-});
+//         return res.status(200).json(results[0]);
+//     } catch (err) {
+//         console.error("Database error:", err);
+//         return res.status(500).json({ message: "Error", error: err.message });
+//     }
+// });
 
-// Update User Route
+//update user 
 router.put('/users/:id', authenticateToken, async (req, res) => {
     const userId = req.params.id;
-    const { name, contactNumber, email, status } = req.body;
+    const { name, contactNumber, email } = req.body;
+
+    console.log('User ID:', userId);
+    console.log('Received Data:', req.body); // Check what data backend receives
 
     try {
         const [result] = await pool.execute(
-            "UPDATE user SET name = ?, contactNumber = ?, email = ?, status = ? WHERE id = ?",
-            [name, contactNumber, email, status, userId]
+            "UPDATE user SET name = ?, contactNumber = ?, email = ? WHERE id = ?",
+            [name, contactNumber, email, userId]
         );
 
         if (result.affectedRows === 0) {
+            console.log('No rows updated.');
             return res.status(404).json({ message: "User not found" });
         }
 
@@ -187,5 +191,88 @@ router.delete('/users/:id', authenticateToken, checkRole, async (req, res) => {
         return res.status(500).json({ message: "Error", error: err.message });
     }
 });
+// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// // Get User Details (Logged-in User)
+// router.get('/user', authenticateToken, async (req, res) => {
+//     const email = res.locals.user.email; // Get logged-in user's email from token
+//     try {
+//         const [results] = await pool.execute(
+//             "SELECT id, name, email, contactNumber, status FROM user WHERE email = ?",
+//             [email]
+//         );
+
+//         if (results.length === 0) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
+
+//         return res.status(200).json(results[0]); // Return only the user's details
+//     } catch (err) {
+//         console.error("Database error:", err);
+//         return res.status(500).json({ message: "Error", error: err.message });
+//     }
+// });
+// // Update Logged-in User Profile
+// router.put('/user', authenticateToken, async (req, res) => {
+//     const email = res.locals.user.email; // Get logged-in user's email from token
+//     const { name, contactNumber, password } = req.body; // Only allow updates for specific fields
+
+//     try {
+//         const [result] = await pool.execute(
+//             "UPDATE user SET name = ?, contactNumber = ?, password = ? WHERE email = ?",
+//             [name, contactNumber, password, email]
+//         );
+
+//         if (result.affectedRows === 0) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
+
+//         return res.status(200).json({ message: "Profile updated successfully" });
+//     } catch (err) {
+//         console.error("Database error:", err);
+//         return res.status(500).json({ message: "Error", error: err.message });
+//     }
+// });
+// // Delete Logged-in User Profile
+// router.delete('/user', authenticateToken, async (req, res) => {
+//     const email = res.locals.user.email; // Get logged-in user's email from token
+
+//     try {
+//         const [result] = await pool.execute(
+//             "DELETE FROM user WHERE email = ?",
+//             [email]
+//         );
+
+//         if (result.affectedRows === 0) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
+
+//         return res.status(200).json({ message: "Account deleted successfully" });
+//     } catch (err) {
+//         console.error("Database error:", err);
+//         return res.status(500).json({ message: "Error", error: err.message });
+//     }
+// });
+// Get User By ID
+router.get('/users/:id', async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        // Query to fetch user by ID
+        const [rows] = await pool.execute("SELECT * FROM user WHERE id = ?", [userId]);
+
+        // If no user found, return 404
+        if (rows.length === 0) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Return the first user
+        return res.status(200).json(rows[0]);
+    } catch (err) {
+        console.error("Database error:", err);
+        return res.status(500).json({ message: "Error fetching user data", error: err.message });
+    }
+});
+
+
 
 module.exports = router

@@ -4,17 +4,22 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserDetailsService } from '../../../services/user-details.service';
+import { UpdateUserDetailsComponent } from '../../update-user-details/update-user-details.component';
+import { RouterModule, Routes } from '@angular/router';
+
+import { Router } from '@angular/router';  // Import Router
 
 @Component({
   selector: 'app-user-manage',
-  standalone: true, // Make this a standalone component
-  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule], // Add CommonModule here
+  standalone: true,
+  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule],
   templateUrl: './user-manage.component.html',
   styleUrls: ['./user-manage.component.scss']
 })
 export class UserManageComponent {
-  users: any[] = []; // Array to hold user data
+  users: any[] = [];
   userDetailsService = inject(UserDetailsService);
+  router = inject(Router);  // Inject the Router service
 
   constructor() {
     this.fetchUserDetails();
@@ -32,7 +37,8 @@ export class UserManageComponent {
   }
 
   onUpdate(userId: number) {
-    console.log(`Update user with ID: ${userId}`);
+    // Navigate to the update page with the user ID as a route parameter
+    this.router.navigate(['/UpdateUserDetailsComponent', userId]);
   }
 
   onDelete(userId: number) {

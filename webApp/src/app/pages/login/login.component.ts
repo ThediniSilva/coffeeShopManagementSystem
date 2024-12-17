@@ -33,7 +33,7 @@ export class LoginComponent {
         // Redirect based on the user's role
         if (result.user.role === 'admin') {
           this.router.navigate(['/adminDashboard']); // Admin Dashboard Route
-        } else if (result.user.role === 'customer') {
+        } else if (result.user.role === 'user') {
           this.router.navigate(['/userDetails']); // Customer Details Route
         } else {
           console.error("Unknown user role:", result.user.role);

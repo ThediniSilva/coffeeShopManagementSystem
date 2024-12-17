@@ -1,37 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { inject } from '@angular/core'; // for Angular DI in the constructor
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserProfileService } from '../../services/user-profile.service';
-import { CommonModule } from '@angular/common'; // This should be imported in the module, not the component.
 
 @Component({
-  selector: 'app-user-details',
-  standalone: true,  // Make it standalone if necessary (for Angular 14+)
-  imports: [CommonModule],
-  templateUrl: './user-details.component.html',  
-  styleUrls: ['./user-details.component.scss']  // Corrected 'styleUrl' to 'styleUrls'
+  selector: 'app-user-manage',
+  standalone: true, // Make this a standalone component
+  imports: [CommonModule, MatTableModule, MatInputModule, MatFormFieldModule], // Add CommonModule here
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.scss']
 })
-export class UserDetailsComponent implements OnInit {
-  user: any = null; // To store user data
-  errorMessage: string = ''; // To store error messages
+export class UserDetailsComponent {
+  users: any[] = []; // Array to hold user data
+  userDetailsService = inject(UserProfileService);
 
-  // Inject the UserProfileService
-  userProfileService = inject(UserProfileService);
-
-  ngOnInit(): void {
-    this.fetchUserProfile(); // Fetch user profile data when component is initialized
+  constructor() {
+    this.fetchUserDetails();
   }
 
-  // Method to fetch user profile data
-  fetchUserProfile(): void {
-    this.userProfileService.getUserProfile().subscribe({
+  fetchUserDetails() {
+    this.userDetailsService.getUserDetails().subscribe({
       next: (result: any) => {
-        this.user = result;  // Assign the user details to the 'user' variable
-        console.log('User Profile:', result);  // Debug: Log user profile to console
+        this.users = result;
       },
       error: (err) => {
-        this.errorMessage = 'Error fetching user profile data'; // Set error message
-        console.error('Error fetching user profile:', err); // Log error to console
-      },
+        console.error('Error fetching users:', err.message);
+      }
     });
   }
+
+//  / onUpdate(userId: number) {
+//     console.log(`Update user with ID: ${userId}`);
+//   }
+
+  // onDelete(userId: number) {
+  //   console.log(`Delete user with ID: ${userId}`);
+  //   if (confirm('Are you sure you want to delete this user?')) {
+  //     this.userDetailsService.deleteUser(userId).subscribe({
+  //       next: () => {
+  //         console.log('User deleted successfully');
+  //         this.fetchUserDetails();
+  //       },
+  //       error: (err) => {
+  //         console.error('Error deleting user:', err.message);
+  //       }
+  //     });
+  //   }
+  // }
 }
+
+
+

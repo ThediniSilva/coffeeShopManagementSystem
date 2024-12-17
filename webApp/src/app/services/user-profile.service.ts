@@ -6,16 +6,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserProfileService {
-  private apiUrl = 'http://localhost:8081/user/user';  // Correct API endpoint
+  private apiUrl = 'http://localhost:8081/user'; // Update with your API base URL
 
   constructor(private http: HttpClient) {}
 
-  getUserProfile(): Observable<any> {
-    // Retrieve token from localStorage or any other method you're using
-    const token = localStorage.getItem('auth_token'); 
+  login(email: string, password: string) {
+    return this.http.post(`${this.apiUrl}/login`, { email, password });
+  }
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  getUserDetails() {
+    return this.http.get(`${this.apiUrl}/user`);
+  }
 
-    return this.http.get<any>(this.apiUrl, { headers });
+  updateUserDetails(user: any) {
+    return this.http.put(`${this.apiUrl}/user`, user);
+  }
+
+  deleteUser() {
+    return this.http.delete(`${this.apiUrl}/user`);
   }
 }
+
+
+
