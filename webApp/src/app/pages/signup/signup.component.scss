@@ -1,27 +1,44 @@
 /* Center the form container */
+// .container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh; /* Full viewport height */
+//     background-color: #f8f9fa; /* Optional background color */
+//     margin: 0;
+//   }
+  
+//   /* Style the form box */
+//   .signup-container {
+//     width: 100%;
+//     max-width: 400px; /* Limit the form width */
+//     padding: 20px;
+//     border: 1px solid #ddd;
+//     border-radius: 8px;
+//     background: #fff; /* White background */
+//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   }
+  
+//   /* Align form fields vertically */
+//   .full-width {
+//     width: 100%;
+//     margin-bottom: 15px; /* Add spacing between input fields */
+//   }
+  
+/* Background Styling */
+.background {
+  background-image: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+/* Transparent Jumbotron Section */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: #f8f9fa; /* Optional background color */
-    margin: 0;
-  }
+ 
+  color: #fff;
+  border-radius: 8px;
+  padding: 2rem;
   
-  /* Style the form box */
-  .signup-container {
-    width: 100%;
-    max-width: 400px; /* Limit the form width */
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff; /* White background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Align form fields vertically */
-  .full-width {
-    width: 100%;
-    margin-bottom: 15px; /* Add spacing between input fields */
-  }
-  
+
+}
