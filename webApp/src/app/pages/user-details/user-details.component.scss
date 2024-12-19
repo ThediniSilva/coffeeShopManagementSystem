@@ -1,0 +1,120 @@
+/* SCSS Variables for Customization */
+$background-overlay: rgba(0, 0, 0, 0.5);
+$card-overlay: rgba(0, 0, 0, 0.4);
+$border-color: rgba(255, 255, 255, 0.2);
+$light-gray: #e2e8f0;
+$darker-gray: #cbd5e1;
+
+/* Ensure Full Background Coverage */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Background Styling */
+.background {
+  background-image: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+/* Transparent Jumbotron Section */
+.jumbotron-transparent {
+  background: $background-overlay;
+  color: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 4rem; /* Ensures the margin blends with background */
+
+  @media (min-width: 768px) {
+    margin-bottom: 4rem; /* Larger margin for medium+ screens */
+    padding: 3rem;
+  }
+}
+
+/* Transparent Cards Section */
+.card-section {
+  margin-bottom: 4rem; /* Creates spacing after the card section */
+  background: $background-overlay; /* Ensures margin background matches overlay */
+  padding-bottom: 1rem; /* Optional: adds padding for spacing inside */
+}
+
+.transparent-card {
+  background: $card-overlay;
+  color: #fff;
+  border: 1px solid $border-color;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+
+  /* Card Image */
+  .card-img-top {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+  }
+
+  /* Card Body */
+  .card-body {
+    padding: 1.5rem;
+    text-align: center;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $light-gray;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      border: 1px solid $light-gray;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: $light-gray;
+        color: #333;
+      }
+    }
+  }
+}
+
+/* Custom Image Styling */
+.custom-img {
+  height: 800px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Text Color Utility Classes */
+.text-gray-200 {
+  color: $light-gray;
+}
+
+.text-gray-300 {
+  color: $darker-gray;
+}
+
+/* Utility Classes for Spacing */
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
+}

@@ -13,42 +13,7 @@ import { UserProfileService } from '../../services/user-profile.service';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent {
-  users: any[] = []; // Array to hold user data
-  userDetailsService = inject(UserProfileService);
-
-  constructor() {
-    this.fetchUserDetails();
-  }
-
-  fetchUserDetails() {
-    this.userDetailsService.getUserDetails().subscribe({
-      next: (result: any) => {
-        this.users = result;
-      },
-      error: (err) => {
-        console.error('Error fetching users:', err.message);
-      }
-    });
-  }
-
-//  / onUpdate(userId: number) {
-//     console.log(`Update user with ID: ${userId}`);
-//   }
-
-  // onDelete(userId: number) {
-  //   console.log(`Delete user with ID: ${userId}`);
-  //   if (confirm('Are you sure you want to delete this user?')) {
-  //     this.userDetailsService.deleteUser(userId).subscribe({
-  //       next: () => {
-  //         console.log('User deleted successfully');
-  //         this.fetchUserDetails();
-  //       },
-  //       error: (err) => {
-  //         console.error('Error deleting user:', err.message);
-  //       }
-  //     });
-  //   }
-  // }
+  
 }
 
 
