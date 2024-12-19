@@ -1,0 +1,33 @@
+<a href="/AddCategoryComponent" class="btn btn-outline-primary">Add Category</a>
+<div class="container mt-5">
+    <h1 class="text-center mb-4" style="font-size: 36px; font-weight: bold;">Category Management</h1>
+  
+    <!-- Users Table -->
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through user data -->
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td class="text-center">
+            <!-- Update Button -->
+            <button class="btn btn-sm btn-warning me-2" >
+              <i class="fa fa-edit"></i> Update
+            </button>
+            <!-- Delete Button -->
+            <button class="btn btn-sm btn-danger" (click)="onDelete(user.id)" >
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

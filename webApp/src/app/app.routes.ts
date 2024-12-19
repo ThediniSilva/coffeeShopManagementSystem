@@ -7,6 +7,8 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { UserManageComponent } from './pages/admin/user-manage/user-manage.component';
 import { UpdateUserDetailsComponent } from './pages/update-user-details/update-user-details.component';
+import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
+import { CategoryDetailsComponent } from './pages/admin/category-details/category-details.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatError } from '@angular/material/form-field';
@@ -24,5 +26,7 @@ export const routes: Routes = [
   { path: 'userDetails', component: UserDetailsComponent },
   { path: 'userManageDetails', component: UserManageComponent },
   { path: 'UpdateUserDetailsComponent/:id', component: UpdateUserDetailsComponent },
+  { path: 'AddCategoryComponent', component: AddCategoryComponent },
+  { path: 'CategoryDetailsComponent', component: CategoryDetailsComponent },
   // { path: 'signup', component: UserService }
 ];
