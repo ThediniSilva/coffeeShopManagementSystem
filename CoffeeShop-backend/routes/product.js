@@ -40,7 +40,7 @@ router.get('/productget', authenticateToken, checkRole, async (req, res) => {
     }
 });
 
-router.get('/getByCategory/:id', authenticateToken, (req, res) => {
+router.get('/getwithCategory/:id', authenticateToken, (req, res) => {
     const id = req.params.id;
     console.log("Category ID received:", id); // Debug log
     const query = "SELECT id, name FROM product WHERE categoryId = ? AND status = 'true'";
@@ -113,6 +113,60 @@ router.delete('/delete/:id', authenticateToken, checkRole, (req, res) => {
         }
     });
 });
+
+// Get All Products with Categories (No Authentication Required)
+router.get('/getPublic', async (req, res) => {
+    try {
+        const query = `
+            SELECT 
+                p.id AS productId, 
+                p.name AS productName, 
+                p.description, 
+                p.price, 
+                p.status, 
+                c.id AS categoryId, 
+                c.name AS categoryName 
+            FROM 
+                product p 
+            INNER JOIN 
+                category c 
+            ON 
+                p.categoryId = c.id 
+            WHERE 
+                p.status = 'true'
+        `;
+
+        const [results] = await connection.query(query); // Use the promise-based pool
+
+        if (results.length === 0) {
+            return res.status(200).json({ message: "No products found" });
+        }
+
+        return res.status(200).json(results);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Database error", error: err.message });
+    }
+});
+router.get('/getByCategory/:id', (req, res) => {
+    const id = req.params.id;
+    console.log("Category ID received:", id); // Debug log
+
+    const query = "SELECT id, name FROM product WHERE categoryId = ? AND status = 'true'";
+
+    connection.query(query, [id], (err, results) => {
+        if (!err) {
+            console.log("Query results:", results); // Debug log
+            return res.status(200).json(results);
+        } else {
+            console.error("Error in query:", err); // Debug log
+            return res.status(500).json(err);
+        }
+    });
+});
+
+module.exports = router;
+
 
 
 

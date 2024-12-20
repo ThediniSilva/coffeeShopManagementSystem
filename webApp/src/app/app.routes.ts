@@ -9,6 +9,7 @@ import { UserManageComponent } from './pages/admin/user-manage/user-manage.compo
 import { UpdateUserDetailsComponent } from './pages/update-user-details/update-user-details.component';
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 import { CategoryDetailsComponent } from './pages/admin/category-details/category-details.component';
+import { MenuComponent } from './pages/menu/menu.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatError } from '@angular/material/form-field';
@@ -28,5 +29,6 @@ export const routes: Routes = [
   { path: 'UpdateUserDetailsComponent/:id', component: UpdateUserDetailsComponent },
   { path: 'AddCategoryComponent', component: AddCategoryComponent },
   { path: 'CategoryDetailsComponent', component: CategoryDetailsComponent },
+  { path: 'MenuComponent', component: MenuComponent },
   // { path: 'signup', component: UserService }
 ];

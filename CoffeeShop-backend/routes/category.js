@@ -73,5 +73,16 @@ router.delete('/delete/:id', authenticateToken, checkRole, async (req, res) => {
     }
 });
 
+// Get All Categories (No Authentication Required)
+router.get('/getPublic', async (req, res) => {
+    try {
+        const [results] = await connection.execute("SELECT * FROM category ORDER BY name");
+        return res.status(200).json(results);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Database error", error: err.message });
+    }
+})
+
 
 module.exports = router;
