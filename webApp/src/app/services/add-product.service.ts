@@ -11,12 +11,12 @@ export class AddProductService {
   private apiUrl = 'http://localhost:8081/product/productadd'; // Backend API URL
 
   // Add category method with token-based authentication
-  addCategory(name: string): Observable<any> {
+  addProduct(product: { name: string; categoryId: number; description: string; price: number }): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.post(
       this.apiUrl,
-      { name }, // Request body
-      { headers } // Headers including the Authorization token
+      product, // Pass the product object directly
+      { headers } // Include Authorization token in headers
     );
   }
 

@@ -6,16 +6,25 @@ const { authenticateToken } = require('../services/authentication');
 const { checkRole } = require('../services/checkRole');
 
 
-router.post('/productadd', authenticateToken, checkRole, (req, res) => {
-    let product = req.body;
-    const query = "insert into product(name,categoryId,description,price,status) values(?,?,?,?,'true')";
-    connection.query(query, [product.name, product.categoryId, product.description, product.price], (err, results) => {
-        if (!err) {
-            return res.status(200).json({ message: "Product added successfully" });
-        } else {
-            return res.status(500).json(err);
-        }
-    });
+router.post('/productadd', authenticateToken, checkRole, async (req, res) => {
+    const product = req.body;
+
+    const query = "INSERT INTO product (name, categoryId, description, price, status) VALUES (?, ?, ?, ?, 'true')";
+
+    try {
+        // Use async/await for the query execution
+        const [results] = await connection.query(query, [product.name, product.categoryId, product.description, product.price]);
+        return res.status(200).json({
+            message: "Product added successfully",
+            data: results // Optionally send back any results, e.g., inserted product ID
+        });
+    } catch (err) {
+        console.error("Error adding product:", err);
+        return res.status(500).json({
+            message: "Error adding product",
+            error: err.message
+        });
+    }
 });
 
 //Correct
@@ -71,47 +80,38 @@ router.get('/getById/:id', authenticateToken, (req, res) => {
 });
 //Correct
 // Route to update a product
-router.patch('/update', authenticateToken, checkRole, (req, res) => {
+// Route to update product details
+router.patch('/update', authenticateToken, checkRole, async (req, res) => {
     const product = req.body;
     const query = "UPDATE product SET name = ?, categoryId = ?, description = ?, price = ? WHERE id = ?";
 
-    connection.query(
-        query,
-        [product.name, product.categoryId, product.description, product.price, product.id],
-        (err, result) => {
-            if (!err) {
-                if (result.affectedRows === 0) {
-                    return res.status(404).json({ message: "Product ID not found" });
-                }
-                return res.status(200).json({ message: "Product updated successfully" });
-            } else {
-                return res.status(500).json(err);
-            }
+    try {
+        const [result] = await connection.query(query, [product.name, product.categoryId, product.description, product.price, product.id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Product ID not found" });
         }
-    );
+        return res.status(200).json({ message: "Product updated successfully" });
+    } catch (err) {
+        console.error("Error updating product:", err);
+        return res.status(500).json({ message: "Error updating product", error: err.message });
+    }
 });
-//Correct
-// Route to delete a product by ID
-router.delete('/delete/:id', authenticateToken, checkRole, (req, res) => {
-    const id = req.params.id; // Get the product ID from the URL
-    console.log("Deleting product with ID:", id); // Debug log
 
+// Route to delete a product by ID
+router.delete('/delete/:id', authenticateToken, checkRole, async (req, res) => {
+    const id = req.params.id;
     const query = "DELETE FROM product WHERE id = ?";
 
-    connection.query(query, [id], (err, result) => {
-        if (!err) {
-            if (result.affectedRows === 0) {
-                // If no rows were affected, the product ID doesn't exist
-                return res.status(404).json({ message: "Product ID not found" });
-            }
-            // Successfully deleted
-            return res.status(200).json({ message: "Product deleted successfully" });
-        } else {
-            // Log and return error
-            console.error("Error deleting product:", err);
-            return res.status(500).json(err);
+    try {
+        const [result] = await connection.query(query, [id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Product ID not found" });
         }
-    });
+        return res.status(200).json({ message: "Product deleted successfully" });
+    } catch (err) {
+        console.error("Error deleting product:", err);
+        return res.status(500).json({ message: "Error deleting product", error: err.message });
+    }
 });
 
 // Get All Products with Categories (No Authentication Required)
