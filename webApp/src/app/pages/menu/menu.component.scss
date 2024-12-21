@@ -1,0 +1,34 @@
+/* Background Styling */
+.background {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/023/645/610/non_2x/watercolor-hand-drawn-composition-with-layered-latte-coffee-cup-whipped-cream-orange-cinnamon-isolated-on-white-background-for-invitations-cafe-restaurant-food-menu-print-website-cards-vector.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh; /* Ensures the background covers the full viewport height */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+  }
+  
+  /* Transparent Jumbotron Section */
+  .container {
+    background: rgba(0, 0, 0, 0.6); /* Adds transparency to the container */
+    color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 1200px;
+  }
+  h1 {
+    font-size: 3rem; /* Larger font for the Menu heading */
+  }
+  
+  h3 {
+    font-size: 2rem; /* Larger font for category titles */
+  }
+  
+  .card-title {
+    font-size: 1.5rem; /* Larger font for product titles */
+  }
+  
+  
