@@ -1,16 +1,18 @@
 <div class="background">
+  <h1 class="text-center mb-5 fs-1"> <span style="font-size: 4rem;">☕🍩🧋</span> Menu  <span style="font-size: 4rem;">☕🍩🧋</span></h1>
+ 
   <div class="container my-5">
     <div class="card-body">
-      <h1 class="text-center mb-4 fs-1">Menu</h1> <!-- Enlarged using fs-1 -->
+     
       <div *ngFor="let category of categories" class="mt-4">
-        <h3 class="text-white  fs-3">{{ category }}</h3> <!-- Enlarged using fs-3 -->
+        <h3 class="text-white fs-3">✨{{ category }} ✨</h3>
         <div class="row">
           <div class="col-md-4" *ngFor="let product of getProductsByCategory(category)">
             <div class="card mb-3">
               <div class="card-body">
-                <h5 class="card-title fs-4">{{ product.name }}</h5> <!-- Enlarged using fs-4 -->
+                <h5 class="card-title fs-4">{{ product.productName }}</h5>
                 <p class="card-text">{{ product.description }}</p>
-                <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+                <p class="card-text"><strong>Price:</strong> Rs.{{ product.price }}</p>
               </div>
             </div>
           </div>
