@@ -1,0 +1,66 @@
+<div class="container mt-5">
+  <h2 class="text-2xl font-bold mb-4">Update Product</h2>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="text-red-500 mb-4">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Product Update Form -->
+  <form (ngSubmit)="updateUser()" class="bg-gray-100 p-6 rounded-lg shadow-md">
+    <!-- Name -->
+    <div class="mb-4">
+      <label class="block font-semibold mb-2">Name</label>
+      <input
+        type="text"
+        [(ngModel)]="userData.name"
+        name="name"
+        required
+        class="w-full p-2 border rounded"
+      />
+    </div>
+
+    <!-- Category ID -->
+    <div class="mb-4">
+      <label class="block font-semibold mb-2">Category ID</label>
+      <input
+        type="text"
+        [(ngModel)]="userData.categoryId"
+        name="categoryId"
+        required
+        class="w-full p-2 border rounded"
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-4">
+      <label class="block font-semibold mb-2">Description</label>
+      <input
+        type="text"
+        [(ngModel)]="userData.description"
+        name="description"
+        class="w-full p-2 border rounded"
+      />
+    </div>
+
+    <!-- Price -->
+    <div class="mb-4">
+      <label class="block font-semibold mb-2">Price</label>
+      <input
+        type="number"
+        [(ngModel)]="userData.price"
+        name="price"
+        required
+        class="w-full p-2 border rounded"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+    >
+      Update Product
+    </button>
+  </form>
+</div>

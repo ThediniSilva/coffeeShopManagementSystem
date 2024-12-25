@@ -12,6 +12,7 @@ import { CategoryDetailsComponent } from './pages/admin/category-details/categor
 import { MenuComponent } from './pages/menu/menu.component';
 import { AddProductComponent } from './pages/admin/add-product/add-product.component';
 import { ProductDetailsComponent } from './pages/admin/product-details/product-details.component';
+import { ProductUpdateComponent } from './pages/admin/product-update/product-update.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatError } from '@angular/material/form-field';
@@ -34,5 +35,6 @@ export const routes: Routes = [
   { path: 'MenuComponent', component: MenuComponent },
   { path: 'AddProductComponent', component: AddProductComponent },
   { path: 'ProductDetailsComponent', component: ProductDetailsComponent },
+  { path: 'ProductUpdateComponent/:id', component: ProductUpdateComponent },
   // { path: 'signup', component: UserService }
 ];

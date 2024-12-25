@@ -38,7 +38,7 @@ export class ProductDetailsComponent {
   
     onUpdate(userId: number) {
       // Navigate to the update page with the user ID as a route parameter
-      this.router.navigate(['/UpdateUserDetailsComponent', userId]);
+      this.router.navigate(['/ProductUpdateComponent', userId]);
     }
   
     onDelete(userId: number) {

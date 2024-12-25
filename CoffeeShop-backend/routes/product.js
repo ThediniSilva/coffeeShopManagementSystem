@@ -81,21 +81,31 @@ router.get('/getById/:id', authenticateToken, (req, res) => {
 //Correct
 // Route to update a product
 // Route to update product details
-router.patch('/update', authenticateToken, checkRole, async (req, res) => {
-    const product = req.body;
-    const query = "UPDATE product SET name = ?, categoryId = ?, description = ?, price = ? WHERE id = ?";
-
-    try {
-        const [result] = await connection.query(query, [product.name, product.categoryId, product.description, product.price, product.id]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Product ID not found" });
-        }
-        return res.status(200).json({ message: "Product updated successfully" });
-    } catch (err) {
-        console.error("Error updating product:", err);
-        return res.status(500).json({ message: "Error updating product", error: err.message });
+router.put('/update', authenticateToken, checkRole, async (req, res) => {
+    const { id, name, categoryId, description, price } = req.body;
+  
+    if (!id || !name || !categoryId || !price) {
+      return res.status(400).json({ message: "Missing required fields" });
     }
-});
+  
+    const query = `
+        UPDATE product 
+        SET name = ?, categoryId = ?, description = ?, price = ?
+        WHERE id = ?`;
+  
+    try {
+      const [result] = await connection.query(query, [name, categoryId, description || null, price, id]);
+  
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: "Product ID not found" });
+      }
+  
+      res.status(200).json({ message: "Product updated successfully" });
+    } catch (err) {
+      console.error("Error updating product:", err);
+      res.status(500).json({ message: "Error updating product", error: err.message });
+    }
+  });
 
 // Route to delete a product by ID
 router.delete('/delete/:id', authenticateToken, checkRole, async (req, res) => {
