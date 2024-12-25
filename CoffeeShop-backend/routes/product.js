@@ -1,5 +1,6 @@
 const express = require('express');
 const connection = require('../connection'); // This should point to the updated promise pool
+const pool = require('../connection'); // Import the MySQL pool
 
 const router = express.Router();
 const { authenticateToken } = require('../services/authentication');
@@ -65,19 +66,27 @@ router.get('/getwithCategory/:id', authenticateToken, (req, res) => {
     });
 });
 
-// Route to get product details by ID
-router.get('/getById/:id', authenticateToken, (req, res) => {
-    const id = req.params.id;
-    const query = "SELECT id, name, description, price FROM product WHERE id = ?";
+router.get('/products/:id', async (req, res) => {
+    const productId = req.params.id;
 
-    connection.query(query, [id], (err, results) => {
-        if (!err) {
-            return res.status(200).json(results[0]);
-        } else {
-            return res.status(500).json(err);
+    try {
+        // Query to fetch product by ID
+        const [rows] = await pool.execute("SELECT id, name,categoryId, description, price FROM product WHERE id = ?", [productId]);
+
+        // If no product found, return 404
+        if (rows.length === 0) {
+            return res.status(404).json({ message: "Product not found" });
         }
-    });
+
+        // Return the first product
+        return res.status(200).json(rows[0]);
+    } catch (err) {
+        console.error("Database error:", err);
+        return res.status(500).json({ message: "Error fetching product data", error: err.message });
+    }
 });
+
+module.exports = router;
 //Correct
 // Route to update a product
 // Route to update product details

@@ -34,16 +34,21 @@ export class ProductUpdateComponent {
       // Get product ID from route
       this.userId = this.route.snapshot.paramMap.get('id') || '';
     
-      // Fetch existing product data
-      this.ProductUpdateService.getUserById(this.userId).subscribe({
-        next: (data) => {
-          this.userData = data; // Map data to form object
-        },
-        error: (err) => {
-          console.error(err);
-          this.errorMessage = 'Failed to load product data.';
-        },
-      });
+      if (this.userId) {
+        // Fetch product data
+        this.ProductUpdateService.getUserById(this.userId).subscribe({
+          next: (data) => {
+            console.log("Fetched product data:", data); // Debug log
+            this.userData = data; // Bind fetched data to form
+          },
+          error: (err) => {
+            console.error("Error fetching product data:", err);
+            this.errorMessage = 'Failed to load product data.';
+          },
+        });
+      } else {
+        this.errorMessage = 'Product ID is missing in the route.';
+      }
     }
     
   

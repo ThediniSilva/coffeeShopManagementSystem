@@ -13,7 +13,7 @@ export class ProductUpdateService {
   // Fetch product details by ID
   getUserById(id: string): Observable<any> {
     const headers = this.getAuthHeaders();
-    return this.http.get(`${this.apiUrl}/getById/${id}`, { headers });
+    return this.http.get(`${this.apiUrl}/products/${id}`, { headers });
     // Correct endpoint for fetching product by ID
   }
 
