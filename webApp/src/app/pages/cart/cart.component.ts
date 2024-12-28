@@ -28,4 +28,28 @@ export class CartComponent implements OnInit {
       }
     });
   }
+
+  deleteItem(productId: number) {
+    this.cartService.deleteCartItem(productId).subscribe({
+      next: () => {
+        this.cartItems = this.cartItems.filter(item => item.product_id !== productId);
+        console.log('Item deleted successfully');
+      },
+      error: (err) => {
+        console.error('Error deleting item:', err);
+      }
+    });
+  }
+  
+  clearCart() {
+    this.cartService.clearCart().subscribe({
+      next: () => {
+        this.cartItems = [];
+        console.log('Cart cleared successfully');
+      },
+      error: (err) => {
+        console.error('Error clearing cart:', err);
+      }
+    });
+  }
 }

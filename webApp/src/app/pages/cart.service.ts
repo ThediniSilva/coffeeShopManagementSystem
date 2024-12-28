@@ -37,4 +37,21 @@ export class CartService {
       })
     };
   }
+  deleteCartItem(productId: number) {
+    const token = localStorage.getItem('token'); // Retrieve the token from localStorage or wherever it's stored
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.delete(`${this.apiUrl}/remove/${productId}`, { headers });
+  }
+  
+  clearCart() {
+    const token = localStorage.getItem('token'); // Retrieve the token from localStorage or wherever it's stored
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.delete(`${this.apiUrl}/clear`, { headers });
+  }
 }
