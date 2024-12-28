@@ -7,13 +7,13 @@ function authenticateToken(req, res, next) {
 
   if (!token) {
     console.error("Token is missing");
-    return res.status(401).json({ message: "Authentication token is missing" }); // Better error message
+    return res.status(401).json({ message: "Authentication token is missing" });
   }
 
   jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
     if (err) {
       console.error("Token verification failed:", err);
-      return res.status(403).json({ message: "Invalid or expired token" }); // More descriptive error
+      return res.status(403).json({ message: "Invalid or expired token" });
     }
 
     console.log("Token verified:", decoded);
@@ -21,5 +21,6 @@ function authenticateToken(req, res, next) {
     next();
   });
 }
+
 
 module.exports = { authenticateToken };

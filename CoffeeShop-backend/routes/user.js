@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../connection'); // Import the MySQL pool
 const router = express.Router();
+const bcrypt = require("bcrypt");
+
 
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
@@ -33,27 +35,27 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+
+
+// Login Route
+// Login Route
 // Login Route
 router.post('/login', async (req, res) => {
     const user = req.body;
     try {
         const [results] = await pool.execute(
-            "SELECT email, password, role, status FROM user WHERE email = ?",
+            "SELECT id, email, password, role, status FROM user WHERE email = ?",
             [user.email]
         );
 
         // Check if user exists and password matches
         if (results.length === 0 || results[0].password !== user.password) {
             return res.status(401).json({ message: "Incorrect Username and Password" });
-        } 
-        
-        // // Check if user status is inactive
-        // if (results[0].status === 'false') {
-        //     return res.status(401).json({ message: "Wait for Admin approval" });
-        // } 
-        
+        }
+
         // Successful login
         const response = { 
+            id: results[0].id, // Include the user ID here
             email: results[0].email, 
             role: results[0].role 
         };
@@ -62,7 +64,7 @@ router.post('/login', async (req, res) => {
         
         return res.status(200).json({ 
             token: accessToken, 
-            user: response // Send user role in the response
+            user: response // Include user data along with the token
         });
     } catch (err) {
         console.error("Database error:", err);
@@ -70,6 +72,8 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+  
 
 // Forgot Password Route
 router.post('/forgotpassword', async (req, res) => {

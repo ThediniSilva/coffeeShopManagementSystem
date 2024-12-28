@@ -13,6 +13,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { AddProductComponent } from './pages/admin/add-product/add-product.component';
 import { ProductDetailsComponent } from './pages/admin/product-details/product-details.component';
 import { ProductUpdateComponent } from './pages/admin/product-update/product-update.component';
+import { CartComponent } from './pages/cart/cart.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatError } from '@angular/material/form-field';
@@ -36,5 +37,6 @@ export const routes: Routes = [
   { path: 'AddProductComponent', component: AddProductComponent },
   { path: 'ProductDetailsComponent', component: ProductDetailsComponent },
   { path: 'ProductUpdateComponent/:id', component: ProductUpdateComponent },
+  { path: 'CartComponent', component: CartComponent },
   // { path: 'signup', component: UserService }
 ];
