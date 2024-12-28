@@ -54,4 +54,14 @@ export class CartService {
   
     return this.http.delete(`${this.apiUrl}/clear`, { headers });
   }
+
+  updateCartItemQuantity(productId: number, quantity: number) {
+    const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  
+    return this.http.put(`${this.apiUrl}/update`, { product_id: productId, quantity }, { headers });
+  }
+  
 }

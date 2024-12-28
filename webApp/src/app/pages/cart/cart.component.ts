@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
       }
     });
   }
-  
+
   clearCart() {
     this.cartService.clearCart().subscribe({
       next: () => {
@@ -49,6 +49,27 @@ export class CartComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error clearing cart:', err);
+      }
+    });
+  }
+
+  calculateTotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  updateQuantity(productId: number, newQuantity: number) {
+    if (newQuantity < 1) return;
+
+    this.cartService.updateCartItemQuantity(productId, newQuantity).subscribe({
+      next: () => {
+        const item = this.cartItems.find(item => item.product_id === productId);
+        if (item) {
+          item.quantity = newQuantity;
+        }
+        console.log(`Quantity updated for product ${productId}`);
+      },
+      error: (err) => {
+        console.error('Error updating quantity:', err);
       }
     });
   }

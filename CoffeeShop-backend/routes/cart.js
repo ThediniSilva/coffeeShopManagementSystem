@@ -88,4 +88,34 @@ router.delete("/clear", authenticateToken, async (req, res) => {
   }
 });
 
+// Update cart item quantity
+router.put("/update", authenticateToken, async (req, res) => {
+  const { product_id, quantity } = req.body;
+  const userId = res.locals.user.id;
+
+  if (!product_id || !quantity) {
+    return res.status(400).json({ message: "Product ID and quantity are required" });
+  }
+
+  try {
+    const query = `
+      UPDATE cart
+      SET quantity = ?
+      WHERE user_id = ? AND product_id = ?
+    `;
+
+    const [result] = await pool.execute(query, [quantity, userId, product_id]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Item not found in cart" });
+    }
+
+    res.status(200).json({ message: "Quantity updated successfully" });
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+
 module.exports = router;

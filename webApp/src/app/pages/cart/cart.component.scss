@@ -1,0 +1,10 @@
+.background {
+    background-image: url('https://png.pngtree.com/background/20210711/original/pngtree-coffee-order-menu-european-style-pattern-background-picture-image_1081989.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Minimum height to allow scrolling */
+    padding-top: 60px; /* Adjust to match your header height */
+    padding-bottom: 60px; /* Adjust to match your footer height */
+    overflow-y: auto; /* Enables scrolling for the menu card */
+  }
