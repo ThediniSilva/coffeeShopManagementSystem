@@ -1,108 +1,357 @@
-/* Background Styling */
-.background {
-  background-image: url('https://png.pngtree.com/background/20210711/original/pngtree-coffee-order-menu-european-style-pattern-background-picture-image_1081989.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh; /* Minimum height to allow scrolling */
-  padding-top: 60px; /* Adjust to match your header height */
-  padding-bottom: 60px; /* Adjust to match your footer height */
-  overflow-y: auto; /* Enables scrolling for the menu card */
-}
 
-/* Transparent Jumbotron Section */
-.container {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border-radius: 8px;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto; /* Centers the container */
-}
+        :root {
+            --primary-coffee: #fdb37f;
+            --secondary-coffee: #efc7ab;
+            --cream: #F5E5C0;
+            --dark-coffee: #3A1F12;
+            --gold: #FFD700;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-// h3 {
-//   font-size: 5rem; /* Larger font for category titles */
-// }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-.card-title {
-  font-size: 1.5rem; /* Larger font for product titles */
-}
+        .background {
+            background: linear-gradient(135deg, #fac6a1 0%, #ffb784 50%, #CD853F 100%);
+            min-height: 100vh;
+            padding: 80px 0 60px;
+            position: relative;
+        }
 
-/* Ensure the header and footer don't overlap */
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://img.freepik.com/premium-photo/cup-coffee-parchment-isolated_182252-390.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            z-index: 0;
+        }
 
-header, footer {
+        .background > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            color: var(--white);
+            text-shadow: 3px 3px 6px var(--shadow);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 3px 3px 6px var(--shadow), 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 3px 3px 6px var(--shadow), 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .sticker {
+            display: inline-block;
+            margin-top: 20px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sticker img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 5px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .sticker img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+.cart-link {
   position: fixed;
-  width: 100%;
-  z-index: 10;
-}
-
-header {
-  top: 0;
-  height: 60px; /* Adjust as per your header height */
-}
-
-footer {
-  bottom: 0;
-  height: 60px; /* Adjust as per your footer height */
-}
-
-main {
-  flex: 1;
-  margin-top: 60px; /* Adjust to match your header height */
-  margin-bottom: 60px; /* Adjust to match your footer height */
-}
-.btn-coffee {
-  background-color: #d8b9a3; /* Coffee color */
-  color: #fff;
+  background-color: #e6c986; /* ✅ Set background to black */
+  top: -10px;
+  right: -100px;
+  z-index: 1000;
+ color: #000000 !important; /* Brown */
   border: none;
   border-radius: 50px;
-  padding: 5px 10px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  transition: transform 0.2s, background-color 0.3s;
-  
-  &:hover {
-    background-color: #553d2b;
-    transform: scale(1.1);
-  }
-
-  &:active {
-    transform: scale(1);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 5px #553d2b;
-  }
-}
-/* Style for the button */
-.btn-light.cart-link {
-  background-color: #f5e5c0; /* Light coffee cream color */
-  color: #4a2e19; /* Deep brown coffee color */
-  border: 1px solid #4a2e19;
-  font-family: 'Cursive', sans-serif;
+  padding: 20px 25px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
   font-size: 16px;
-  padding: 10px 20px;
-  transition: background-color 0.3s, transform 0.2s;
-  position: fixed; /* Fixed positioning so it stays on screen */
-  top: 100px; /* Adjusted this value to move it lower */
-  right: 20px; /* Adjust horizontal positioning */
-  z-index: 1000; /* Ensure it's on top of other content */
-}
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  text-decoration: none;
 
-.btn-light.cart-link:hover {
-  background-color: #eed8a3; /* Slightly darker coffee cream */
-  color: #3a1f12;
-  transform: scale(1.05);
+  /** ✅ Add this line: **/
+  display: left;
+
+  align-items: center;
+  gap: 10px;
 }
 
 
+.cart-link:hover {
+  
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
 
+.cart-link i {
+  font-size: 20px;
+  margin-right: 8px
+}
+
+
+.cart-link:hover {
+ 
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.cart-link i {
+  font-size: 20px;
+}
+
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card-body {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Category Styling */
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px var(--shadow);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--cream));
+            border-radius: 2px;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-coffee), var(--secondary-coffee), var(--gold));
+        }
+
+        .product-card .card-body {
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 0;
+            padding: 30px;
+            text-align: center;
+            box-shadow: none;
+            border: none;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-coffee);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .card-title::after {
+            
+            position: absolute;
+            right: -30px;
+            top: 0;
+            font-size: 1.2rem;
+            color: var(--secondary-coffee);
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            color: var(--primary-coffee);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary-coffee);
+        }
+
+        /* Add to Cart Button */
+        .btn-coffee {
+            background: linear-gradient(135deg, var(--primary-coffee) 0%, var(--secondary-coffee) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .btn-coffee:hover {
+            background: linear-gradient(135deg, var(--secondary-coffee) 0%, var(--primary-coffee) 100%);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(139, 69, 19, 0.4);
+        }
+
+        .btn-coffee:active {
+            transform: translateY(0);
+        }
+
+        .btn-coffee::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-coffee:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-title {
+                font-size: 2.5rem;
+            }
+            
+            .category-title {
+                font-size: 2rem;
+            }
+            
+            .cart-link {
+                right: 15px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .card-body {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .menu-title {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .sticker img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Loading animation for better UX */
+        .product-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }

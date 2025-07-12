@@ -14,6 +14,9 @@ import { AddProductComponent } from './pages/admin/add-product/add-product.compo
 import { ProductDetailsComponent } from './pages/admin/product-details/product-details.component';
 import { ProductUpdateComponent } from './pages/admin/product-update/product-update.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CoffeeDetailsComponent } from './pages/coffee-details/coffee-details/coffee-details.component';
+import { SnackDetailsComponent } from './pages/snack-detail/snack-details/snack-details.component';
+import { DessertDetailsComponent } from './pages/dessert-Details/dessert-details/dessert-details.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatError } from '@angular/material/form-field';
@@ -38,5 +41,8 @@ export const routes: Routes = [
   { path: 'ProductDetailsComponent', component: ProductDetailsComponent },
   { path: 'ProductUpdateComponent/:id', component: ProductUpdateComponent },
   { path: 'CartComponent', component: CartComponent },
+  { path: 'CoffeeDetailsComponent', component: CoffeeDetailsComponent },
+  { path: 'SnackDetailsComponent', component: SnackDetailsComponent },
+  { path: 'DessertDetails', component: DessertDetailsComponent },
   // { path: 'signup', component: UserService }
 ];

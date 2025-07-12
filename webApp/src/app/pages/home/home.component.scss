@@ -1,120 +1,194 @@
-/* SCSS Variables for Customization */
-$background-overlay: rgba(0, 0, 0, 0.5);
-$card-overlay: rgba(0, 0, 0, 0.4);
-$border-color: rgba(255, 255, 255, 0.2);
-$light-gray: #e2e8f0;
-$darker-gray: #cbd5e1;
+/* Enhanced SCSS Variables */
+$background-overlay: rgba(0, 0, 0, 0.6);
+$card-overlay: rgba(0, 0, 0, 0.5);
+$border-color: rgba(255, 255, 255, 0.3);
+$light-gray: #f8f9fa;
+$darker-gray: #e9ecef;
+$primary-color: #6f4e37; // Coffee brown
+$secondary-color: #d4a59a; // Muffin tan
+$text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 
-/* Ensure Full Background Coverage */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
+/* Animation Variables */
+$transition-speed: 0.3s;
 
-/* Background Styling */
+/* Enhanced Background Styling */
 .background {
   background-image: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-}
-
-/* Transparent Jumbotron Section */
-.jumbotron-transparent {
-  background: $background-overlay;
-  color: #fff;
-  border-radius: 8px;
-  padding: 2rem;
-  margin-bottom: 4rem; /* Ensures the margin blends with background */
-
-  @media (min-width: 768px) {
-    margin-bottom: 4rem; /* Larger margin for medium+ screens */
-    padding: 3rem;
-  }
-}
-
-/* Transparent Cards Section */
-.card-section {
-  margin-bottom: 4rem; /* Creates spacing after the card section */
-  background: $background-overlay; /* Ensures margin background matches overlay */
-  padding-bottom: 1rem; /* Optional: adds padding for spacing inside */
-}
-
-.transparent-card {
-  background: $card-overlay;
-  color: #fff;
-  border: 1px solid $border-color;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-
-  /* Card Image */
-  .card-img-top {
-    object-fit: cover;
-    height: 200px;
+  background-attachment: fixed;
+  position: relative;
+  
+  &::before {
+    
+    
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    z-index: 0;
   }
+  
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
 
-  /* Card Body */
-  .card-body {
-    padding: 1.5rem;
-    text-align: center;
+/* Enhanced Card Styles */
+.card {
+  
+  transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+  border: none;
+  
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  &.shadow-lg {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+}
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+/* Image Enhancements */
+.img-fluid {
+  transition: transform $transition-speed ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Text Enhancements */
+.bg-dark.text-white {
+  background-color: rgba(33, 37, 41, 0.9) !important;
+  
+  h1 {
+    font-family: 'Playfair Display', serif;
+    text-shadow: $text-shadow;
+    color: $secondary-color;
+    position: relative;
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: $secondary-color;
+      margin: 15px 0;
     }
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
 
-    p {
-      font-size: 1rem;
-      color: $light-gray;
-    }
-
-    a {
+/* About Section Enhancements */
+.container.mx-auto.px-4.mb-12 {
+  
+  
+    padding-bottom: 0.5rem;
+  .rounded-lg {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: $primary-color;
+      position: relative;
       display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      color: #fff;
-      border: 1px solid $light-gray;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: all 0.3s ease-in-out;
-
+      
+      &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: $primary-color;
+        margin: 10px 0;
+      }
+    }
+    
+    span[style*="font-size: 4rem;"] {
+      display: inline-block;
+      transition: transform 0.5s ease;
+      
       &:hover {
-        background-color: $light-gray;
-        color: #333;
+        transform: rotate(20deg) scale(1.2);
       }
     }
   }
 }
 
-/* Custom Image Styling */
-.custom-img {
-  height: 800px;
-  object-fit: cover;
-  width: 100%;
+/* Button Enhancements */
+.btn {
+  transition: all $transition-speed ease;
+  border-width: 2px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  
+  &-outline-primary {
+    color: $primary-color;
+    border-color: $primary-color;
+    
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
 }
 
-/* Text Color Utility Classes */
-.text-gray-200 {
-  color: $light-gray;
+/* Cards Section Enhancements */
+.container .grid {
+      padding-top: 2rem;
+    padding-bottom: 2rem;
+  .bg-white {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all $transition-speed ease;
+    
+    &:hover {
+      background-color: white !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      
+      img {
+        opacity: 0.9;
+      }
+    }
+    
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: $primary-color;
+    }
+    
+    p {
+      color: #555 !important;
+    }
+  }
+  
+  img {
+    transition: opacity $transition-speed ease;
+  }
 }
 
-.text-gray-300 {
-  color: $darker-gray;
-}
-
-/* Utility Classes for Spacing */
-.mb-12 {
-  margin-bottom: 3rem;
-}
-
-/* Footer Styling */
-.footer {
-  background-color: #333;
-  color: #fff;
-  padding: 2rem 0;
-  text-align: center;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .display-5 {
+    font-size: 2rem;
+  }
+  
+  .bg-dark.text-white {
+    padding: 2rem 1.5rem !important;
+  }
 }

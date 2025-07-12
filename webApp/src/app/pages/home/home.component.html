@@ -71,54 +71,40 @@
 
   <!-- Cards Section -->
   <div class="container ">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-      <!-- Card 1 -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <img
-          src="https://media.istockphoto.com/id/1400194993/photo/cappuccino-art.jpg?s=612x612&w=0&k=20&c=_nYOcyQ15cYEeUYgUzkC5qG946nkCwU06NiWKt1s8SE="
-          alt="Coffee"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-6">
-          <h2 class="text-xl font-semibold mb-2">Best Coffee</h2>
-          <p class="text-gray-600 mb-4">
-            Try premium brewed coffee with an exquisite taste.
-          </p>
+    <div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <!-- Card 1 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <img src="https://media.istockphoto.com/id/1400194993/photo/cappuccino-art.jpg?s=612x612&w=0&k=20&c=_nYOcyQ15cYEeUYgUzkC5qG946nkCwU06NiWKt1s8SE=" alt="Coffee" class="w-full h-48 object-cover" />
+      <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">Best Coffee</h2>
+        <p class="text-gray-600 mb-4">Try premium brewed coffee with an exquisite taste.</p>
+        <a *ngIf="isLoggedIn; else loginRedirect" href="/CoffeeDetailsComponent" class="btn btn-outline-primary">Order Now</a>
+        <ng-template #loginRedirect>
           <a href="/login" class="btn btn-outline-primary">Order Now</a>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <img
-          src="https://media.istockphoto.com/id/1975776233/photo/parisian-morning-delights-street-cafe-breakfast-scene-on-a-sunny-day-in-saint-germain-des.jpg?s=612x612&w=0&k=20&c=7PZxnZP0UASJngv3IG5XFXNucia0Ho71w3lsVSx2KpE="
-          alt="Snacks"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-6">
-          <h2 class="text-xl font-semibold mb-2">Delicious Snacks</h2>
-          <p class="text-gray-600 mb-4">
-            Pair your coffee with our freshly prepared snacks.
-          </p>
-          <a href="/login" class="btn btn-outline-primary">Explore Snacks</a>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <img
-          src="https://media.istockphoto.com/id/860182950/photo/food.jpg?s=612x612&w=0&k=20&c=AKudyqBKezuhr4ySRlZaM892sq-vF1CoH_N0SMmPF5g="
-          alt="Desserts"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-6">
-          <h2 class="text-xl font-semibold mb-2">Sweet Treats</h2>
-          <p class="text-gray-600 mb-4">
-            Indulge in our desserts and make your day sweeter.
-          </p>
-          <a href="/login" class="btn btn-outline-primary">Try Desserts</a>
-        </div>
+        </ng-template>
       </div>
     </div>
+    <!-- Card 2 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <img src="https://media.istockphoto.com/id/1975776233/photo/parisian-morning-delights-street-cafe-breakfast-scene-on-a-sunny-day-in-saint-germain-des.jpg?s=612x612&w=0&k=20&c=7PZxnZP0UASJngv3IG5XFXNucia0Ho71w3lsVSx2KpE=" alt="Snacks" class="w-full h-48 object-cover" />
+      <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">Delicious Snacks</h2>
+        <p class="text-gray-600 mb-4">Pair your coffee with our freshly prepared snacks.</p>
+        <a *ngIf="isLoggedIn; else loginRedirect" href="/SnackDetailsComponent" class="btn btn-outline-primary">Order Now</a>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <img src="https://media.istockphoto.com/id/860182950/photo/food.jpg?s=612x612&w=0&k=20&c=AKudyqBKezuhr4ySRlZaM892sq-vF1CoH_N0SMmPF5g=" alt="Desserts" class="w-full h-48 object-cover" />
+      <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">Sweet Treats</h2>
+        <p class="text-gray-600 mb-4">Indulge in our desserts and make your day sweeter.</p>
+        <a *ngIf="isLoggedIn; else loginRedirect" href="/DessertDetails" class="btn btn-outline-primary">Order Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>
 </div>

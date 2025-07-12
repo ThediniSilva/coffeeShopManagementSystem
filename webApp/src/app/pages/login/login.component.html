@@ -1,29 +1,83 @@
-<div class="background ">
-<div class="container  justify-content-center align-items-center" style="min-height: 100vh;">
-  <div class="row justify-content-center ">
-    <div class="col-sm-10 col-md-8 col-lg-5">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h2 class="text-center mb-4">Login</h2>
-          <form [formGroup]="loginForm">
-           
-            <!-- Email Input -->
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" formControlName="email" class="form-control" required>
+<!-- login.component.html -->
+<div class="background">
+  <div class="coffee-beans"></div>
+  <div class="coffee-beans"></div>
+  <div class="coffee-beans"></div>
+  <div class="coffee-beans"></div>
+  
+  <div class="container justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="row justify-content-center">
+      <div class="col-sm-10 col-md-8 col-lg-5">
+        <div class="card login-card">
+          <div class="card-header">
+            <div class="coffee-icon">
+              <i class="fas fa-coffee"></i>
             </div>
-            <!-- Password Input -->
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" formControlName="password" class="form-control" required>
-            </div>
-            <!-- Submit Button -->
-            <div>
-              <button class="btn btn-primary w-100" (click)="login()" [disabled]="loginForm.invalid">
-                Login
-              </button>
-            </div>
-          </form>
+            <h2 class="card-title">Welcome Back</h2>
+            <p class="card-subtitle">Sign in to your coffee shop dashboard</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="loginForm">
+              <!-- Email Input -->
+              <div class="form-floating mb-3">
+                <i class="fas fa-envelope input-icon"></i>
+                <input 
+                  type="email" 
+                  formControlName="email" 
+                  class="form-control" 
+                  id="email"
+                  placeholder="Enter your email"
+                  required
+                >
+                <label for="email">Email Address</label>
+              </div>
+              
+              <!-- Password Input -->
+              <div class="form-floating mb-3">
+                <i class="fas fa-lock input-icon"></i>
+                <input 
+                  [type]="showPassword ? 'text' : 'password'" 
+                  formControlName="password" 
+                  class="form-control" 
+                  id="password"
+                  placeholder="Enter your password"
+                  required
+                >
+                <label for="password">Password</label>
+                <i 
+                  [class]="showPassword ? 'fas fa-eye-slash password-toggle' : 'fas fa-eye password-toggle'"
+                  (click)="togglePassword()"
+                ></i>
+              </div>
+              
+              <!-- Remember Me -->
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">
+                  Remember me
+                </label>
+              </div>
+              
+              <!-- Submit Button -->
+              <div>
+                <button 
+                  class="btn login-btn w-100" 
+                  (click)="login()" 
+                  [disabled]="loginForm.invalid || isLoading"
+                  type="button"
+                >
+                  <i *ngIf="isLoading" class="fas fa-spinner fa-spin me-2"></i>
+                  <i *ngIf="!isLoading" class="fas fa-sign-in-alt me-2"></i>
+                  {{ isLoading ? 'Signing In...' : 'Sign In' }}
+                </button>
+              </div>
+              
+              <!-- Forgot Password -->
+              <div class="forgot-password">
+                <a href="#" (click)="forgotPassword($event)">Forgot your password?</a>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

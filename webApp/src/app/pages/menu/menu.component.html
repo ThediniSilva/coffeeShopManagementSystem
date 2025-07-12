@@ -1,42 +1,63 @@
-<div class="background">
-  <!-- Sticker Image near Menu Title, centered on the page -->
-  <div class="d-flex justify-content-center align-items-center mb-4">
-    <h1 class=" me-4" 
-      style="font-family: 'Pacifico', cursive; font-size: 50px; font-style: italic; color: #000000;">
-            Menu
-          </h1>
-    <div class="sticker">
-      <img src="https://ih1.redbubble.net/image.5283951065.0480/tst,small,507x507-pad,600x600,f8f8f8.webp" 
-           alt="Coffee Sticker" 
-           class="img-fluid rounded-circle shadow" style="width: 150px; height: 150px;">
-    </div>
-  </div>
-  <div class="container my-5">
-    
-    <div class="card-body">
-      <a href="/CartComponent" class="btn btn-light text-brown cart-link">
-        <span style="font-size: 1rem;">☕</span> My Tray
-      </a>
-      <div *ngFor="let category of categories" class="mt-4">
-        <h3 class="text-white fs-3">✨{{ category }} ✨</h3>
-        <div class="row">
-          <div class="col-md-4" *ngFor="let product of getProductsByCategory(category)">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title fs-4">{{ product.productName }}</h5>
-                <p class="card-text"><strong>Price:</strong> Rs.{{ product.price }}</p>
-               
-                <button 
-                      class="btn btn-coffee d-flex align-items-center justify-content-center"
-                      (click)="addToCart(product.productId)">
-                       Add to My Tray
-                 </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop Menu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+</head>
+<body>
+    <div class="background">
 
-              </div>
+       <!-- Cart Button -->
+        <a href="/CartComponent" class="cart-link">
+            <i class="fas fa-coffee"></i>
+            <span>My Tray</span>
+        </a>
+        <!-- Header Section -->
+        <div class="container">
+            <div class="header-section">
+                <h1 class="menu-title">Our Menu</h1>
+                <div class="sticker">
+                    <img src="https://ih1.redbubble.net/image.5283951065.0480/tst,small,507x507-pad,600x600,f8f8f8.webp" alt="Coffee Sticker">
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+
+       
+
+        <!-- Menu Content -->
+        <div class="container">
+            <div class="card-body">
+                <!-- Categories will be populated by Angular -->
+                <div *ngFor="let category of categories" class="category-section">
+                    <h3 class="category-title">{{ category }}</h3>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let product of getProductsByCategory(category)">
+                            <div class="card product-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.productName }}</h5>
+                                    <p class="card-text">
+                                        <span class="price">Rs. {{ product.price }}</span>
+                                    </p>
+                                    <button 
+                                        class="btn btn-coffee d-flex align-items-center justify-content-center mx-auto"
+                                        (click)="addToCart(product.productId)">
+                                        <i class="fas fa-plus me-2" ></i>
+                                        Add to My Tray
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

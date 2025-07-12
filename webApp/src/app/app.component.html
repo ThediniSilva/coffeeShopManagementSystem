@@ -1,36 +1,58 @@
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link
+  href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  rel="stylesheet"
+/>
 
 <div class="wrapper d-flex flex-column min-vh-200">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary border-bottom border-top p-3">
+  <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
       <!-- Brand -->
-      <a class="navbar-brand fs-4 fw-bold d-flex align-items-center" href="#">
-        <!-- Logo Image -->
-        <img 
-          src="data:image/jpeg;base64,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" 
-          alt="Logo" 
-          style="height: 30px; width: 30px; margin-right: 10px;"
-        />
-        <!-- Brand Name -->
-        <span class="text-white">Mug & Muffin</span>
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <div class="logo-icon">
+          <i class="fas fa-coffee text-dark"></i>
+        </div>
+        <span class="brand-text">Mug & Muffin</span>
       </a>
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-              aria-expanded="false" aria-label="Toggle navigation">
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link fw-semibold text-white me-1" href="#">Home</a>
+            <a class="nav-link active" href="#">
+              <i class="fas fa-home me-1"></i>Home
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold text-white me-1" href="/signup">Sign up</a>
+            <a class="nav-link" href="/signup">
+              <i class="fas fa-user-plus me-1"></i>Sign up
+            </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link fw-semibold text-white me-1" href="/login">Login</a>
+          <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link" href="/login">
+              <i class="fas fa-sign-in-alt me-1"></i>Login
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link" href="/MenuComponent">
+              <i class="fas fa-coffee  me-1"></i>Menu
+            </a>
+          </li>
+           <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link" (click)="logoutUser()">
+              <i class="fas fa-sign-out-alt me-1"></i>Logout
+            </a>
           </li>
         </ul>
       </div>
@@ -43,13 +65,43 @@
   </div>
 
   <!-- Footer -->
-  <footer class="text-center text-gray-300 py-4">
-    <div class="container text-center">
-      <p class="mb-0">&copy; 2024 Mug & Muffin. All rights reserved.</p>
-      <small>
-        <a href="#" class="text-white text-decoration-none me-2">Privacy Policy</a>
-        <a href="#" class="text-white text-decoration-none">Terms of Service</a>
-      </small>
-    </div>
-  </footer>
+  <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 text-amber-400">Coffee Delight</h4>
+                    <p class="text-gray-400">Crafting perfect coffee experiences since 1985. Quality beans, expert roasting, exceptional taste.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4 text-amber-400">Quick Links</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Menu</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Locations</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4 text-amber-400">Customer Service</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4 text-amber-400">Follow Us</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors text-2xl">📘</a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors text-2xl">📷</a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors text-2xl">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Coffee Delight. All rights reserved. | Made with ❤️ and lots of ☕</p>
+            </div>
+        </div>
+    </footer>
 </div>
