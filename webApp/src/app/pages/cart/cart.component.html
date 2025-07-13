@@ -54,12 +54,75 @@
           </h2>
           <button (click)="clearCart()" class="btn btn-danger me-2 flex-grow-1">Clear Cart</button>
            <a href="/MenuComponent" class="btn btn-outline-primary flex-grow-1">Add more items</a>
+           <button (click)="confirmOrder()" class="btn btn-outline-primary flex-grow-1">
+  Check Out
+</button>
+
+
         </div>
       </div>
   
-      <ng-template #emptyCart>
-        <p class="text-center text-muted">Your cart is empty. Start adding some products!</p>
-      </ng-template>
+     <ng-template #emptyCart>
+  <p class="text-center text-muted">Your cart is empty.</p>
+
+  <!-- Latest Order Tracker -->
+  <div *ngIf="latestOrder" class="mt-4 p-4 bg-light rounded shadow-sm text-center">
+    <h4 class="mb-3">🧾 Latest Order Status Tracker</h4>
+
+    <div class="d-flex justify-content-center align-items-center flex-wrap">
+      <div *ngFor="let step of ['Paid', 'Processing', 'Complete', 'Delivered', 'Finished']; let i = index">
+        <div
+          [ngClass]="{
+            'bg-success text-white': latestOrder.payment_status === step,
+            'bg-secondary text-white': stepStatus(step),
+            'bg-light text-dark': !stepStatus(step)
+          }"
+          class="px-3 py-2 rounded-pill mx-2 mb-2"
+        >
+          {{ step }}
+        </div>
+        <ng-container *ngIf="i < 4">
+          <span class="mx-1 text-muted">→</span>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Previous Orders -->
+  <div *ngIf="allOrders.length > 0" class="mt-5">
+    <h4 class="mb-3">📦 My All Orders</h4>
+
+    <div *ngFor="let order of allOrders" class="mb-4 p-3 bg-white border rounded shadow-sm">
+      <h5 class="mb-2">Order #{{ order.id }} | Rs. {{ order.total_amount }}</h5>
+      <p>Status: <strong>{{ order.payment_status }}</strong></p>
+      <p>Placed on: {{ order.created_at | date: 'short' }}</p>
+
+     <div *ngIf="orderItemsMap && orderItemsMap[order.id] && orderItemsMap[order.id].length > 0" class="table-responsive">
+
+        <table class="table table-sm table-bordered table-striped">
+          <thead class="table-light">
+            <tr>
+              <th>Product Name</th>
+              <th>Qty</th>
+              <th>Price (Rs)</th>
+              <th>Subtotal (Rs)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of orderItemsMap[order.id]">
+              <td>{{ item.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.price * item.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
     </div>
   </div>
   

@@ -2,66 +2,73 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:8081/cart'; // Update with your backend URL
+  private apiUrl = 'http://localhost:8081/cart';       // For cart operations
+  private orderUrl = 'http://localhost:8081/api/orders';   // For order operations
 
   constructor(private http: HttpClient) {}
 
-  addToCart(productId: number, quantity: number): Observable<any> {
-    const body = { product_id: productId, quantity };
-    console.log("Request Payload:", body); // Debug log to verify request payload
-    return this.http.post(`${this.apiUrl}/add`, body, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}` // Ensure token is present
-      }
-    });
-  }
-  
-
-  getCartItems(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}` // Ensure the token is present
-      }
-    });
-  }
-
+  // Utility method to attach Authorization header
   private getAuthHeaders() {
-    const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
+    const token = localStorage.getItem('token'); // Ensure token is stored after login
     return {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`
       })
     };
   }
-  deleteCartItem(productId: number) {
-    const token = localStorage.getItem('token'); // Retrieve the token from localStorage or wherever it's stored
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  
-    return this.http.delete(`${this.apiUrl}/remove/${productId}`, { headers });
-  }
-  
-  clearCart() {
-    const token = localStorage.getItem('token'); // Retrieve the token from localStorage or wherever it's stored
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  
-    return this.http.delete(`${this.apiUrl}/clear`, { headers });
+
+  // Add item to cart
+  addToCart(productId: number, quantity: number): Observable<any> {
+    const body = { product_id: productId, quantity };
+    console.log("Request Payload:", body);
+    return this.http.post(`${this.apiUrl}/add`, body, this.getAuthHeaders());
   }
 
-  updateCartItemQuantity(productId: number, quantity: number) {
-    const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-  
-    return this.http.put(`${this.apiUrl}/update`, { product_id: productId, quantity }, { headers });
+  // Get all cart items for the logged-in user
+  getCartItems(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/`, this.getAuthHeaders());
   }
-  
+
+  // Delete one item from the cart
+  deleteCartItem(productId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/remove/${productId}`, this.getAuthHeaders());
+  }
+
+  // Clear all items from the cart
+  clearCart(): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/clear`, this.getAuthHeaders());
+  }
+
+  // Update quantity of a specific item
+  updateCartItemQuantity(productId: number, quantity: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update`, { product_id: productId, quantity }, this.getAuthHeaders());
+  }
+
+  // 🆕 Place the order (confirm order)
+  placeOrder(): Observable<any> {
+    return this.http.post(`${this.orderUrl}/place`, {}, this.getAuthHeaders());
+  }
+
+  getMyOrders() {
+  return this.http.get('http://localhost:8081/api/orders/my-orders', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+}
+
+
+getOrderDetails(orderId: number) {
+  return this.http.get(`http://localhost:8081/api/orders/${orderId}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+}
+
 }

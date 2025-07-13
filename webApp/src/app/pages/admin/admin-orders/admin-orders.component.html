@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Manage Orders</h2>
+
+  <div *ngIf="orders.length > 0; else noOrders">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>User ID</th>
+          <th>Total Amount</th>
+          <th>Status</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.user_id }}</td>
+          <td>Rs. {{ order.total_amount }}</td>
+          <td>
+            <span class="badge"
+              [ngClass]="{
+                'bg-secondary': order.payment_status === 'Pending',
+                'bg-info': order.payment_status === 'Paid',
+                'bg-warning': order.payment_status === 'Processing',
+                'bg-success': order.payment_status === 'Complete',
+                'bg-dark': order.payment_status === 'Delivered'
+              }">
+              {{ order.payment_status }}
+            </span>
+          </td>
+          <td>{{ order.created_at | date }}</td>
+          <td>
+            <button class="btn btn-sm btn-info me-1" (click)="updateStatus(order.id, 'Paid')">Paid</button>
+            <button class="btn btn-sm btn-warning me-1" (click)="updateStatus(order.id, 'Processing')">Processing</button>
+            <button class="btn btn-sm btn-success me-1" (click)="updateStatus(order.id, 'Complete')">Complete</button>
+            <button class="btn btn-sm btn-dark" (click)="updateStatus(order.id, 'Delivered')">Delivered</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noOrders>
+    <p class="text-muted text-center">No orders available.</p>
+  </ng-template>
+</div>
